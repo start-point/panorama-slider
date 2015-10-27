@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <style type="text/css">
+            .hotel {
+                position: relative;
+                outline: 1px solid #F1F1F1;
+                display: table;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .hotel .thumbnail {
+                display: inline-block;
+                width: 80px;
+                height: 100px;
+                overflow: hidden;
+            }
+            .hotel .thumbnail img {
+                position: relative;
+                left: 0;
+                -webkit-transition: left 2s; /* Safari */
+                transition: left 2s;
+                
+            }
+            .hotel .thumbnail img:hover {
+                position: relative;
+                margin-left: -50%;
+                left: -100%;
+            }
+            .hotel .details {
+                display: table-cell;
+                vertical-align: top;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <article class="hotel">
+            <picture class="thumbnail">
+                <img src="http://pics.tui.com/pics/picsPanos/3/34898_A.jpg" alt="Hotel">
+            </picture>
+            <p class="details">
+                Hotelname
+            </p>
+        </article>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</html>
