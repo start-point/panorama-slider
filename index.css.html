@@ -6,47 +6,159 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <style type="text/css">
+            body {
+                padding: 10px;
+                -webkit-background-size: 100%;
+            }
+            h3,
+            p {
+              margin: 0;
+              padding: 10px;
+              font-family: 'Tui Type Light', Calibri, 'Droid Sans', Arial, sans-serif;
+              font-size: 16px;
+              line-height: 20px;
+            }
             .hotel {
+              box-sizing: border-box;
                 position: relative;
-                outline: 1px solid #F1F1F1;
-                display: table;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .hotel .thumbnail {
+                outline: 1px solid #F5F5F5;
                 display: inline-block;
-                width: 80px;
-                height: 100px;
+                width: 320px;
+                margin: 10px;
+                float: left;
+                -webkit-user-select: none;  /* Chrome all / Safari all */
+               -moz-user-select: none;     /* Firefox all */
+               -ms-user-select: none;      /* IE 10+ */
+               user-select: none;
+            }
+            .hotel .container {
+                position: relative;
+                display: inline-block;
+                width: 320px;
+                height: 320px;
                 overflow: hidden;
+                margin: 0;
+                padding: 0;
+               line-height:0;
+               vertical-align: top;
             }
-            .hotel .thumbnail img {
-                position: relative;
+            .hotel .container img {
+                position: absolute;
+                height: 100%;
                 left: 0;
-                -webkit-transition: left 2s; /* Safari */
-                transition: left 2s;
-                
+                transition: left .5s ease-in-out 0s;
             }
-            .hotel .thumbnail img:hover {
-                position: relative;
-                margin-left: -50%;
-                left: -100%;
+            .gradient {
+              box-sizing: border-box;
+              background-size: 100%;
+            }
+            .gradient.module-blue {
+              background-image: linear-gradient(to right bottom, rgb(112, 203, 244), rgb(183, 229, 249));
+              color: rgb(9, 42, 94);
+            }
+            .gradient.imagery-blue {
+              background-image: linear-gradient(rgba(0, 167, 231, 0.8), rgba(112, 203, 244, 0.8));
+              color: rgb(255, 255, 255);
+            }
+            .hotel .container .handle {
+              display: table;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 320px;
+              height: 100%;
+              z-index: 2
+            }
+            .hotel .container .handle span {
+              display: table-cell;
+              width: 33%;
+            }
+            .hotel .container .handle .left {
+              cursor: w-resize;
+            }
+            .hotel .container .handle .center {
+              cursor: col-resize;
+            }
+            .hotel .container .handle .right {
+              cursor: e-resize;
             }
             .hotel .details {
-                display: table-cell;
-                vertical-align: top;
-                width: 100%;
+              display: block;
+              box-sizing: border-box;
+              position: relative;
+              z-index: 1;
+            }
+            .hotel .details.over {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              margin: 10px;
             }
         </style>
     </head>
     <body>
         <article class="hotel">
-            <picture class="thumbnail">
-                <img src="http://pics.tui.com/pics/picsPanos/3/34898_A.jpg" alt="Hotel">
+            <picture class="container">
+                <img src="http://pics.tui.com/pics/pics800x600/ati/d/de453808.jpg" alt="Hotel">
+                <div class="handle">
+                  <span class="left"></span>
+                  <span class="center"></span>
+                  <span class="right"></span>
+                </div>
             </picture>
-            <p class="details">
-                Hotelname
-            </p>
+            <div class="details gradient module-blue">
+              <h3>Gradient 1</h3>
+	            <p>For use on white background</p>
+          </div>
         </article>
-    </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <article class="hotel">
+            <picture class="container">
+                <img src="http://pics.tui.com/pics/pics800x600/ati/d/de453806.jpg" alt="Hotel">
+                <div class="handle">
+                  <span class="left"></span>
+                  <span class="center"></span>
+                  <span class="right"></span>
+                </div>
+            </picture>
+            <div class="details over gradient imagery-blue">
+              <h3>Gradient 2</h3>
+	            <p>For use on imagery</p>
+          </div>
+        </article>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript">
+          function slideHotel() {
+            var $container = $('.container');
+            var $image = $('.container').children('img');
+            var $handle = $('.handle').children('span');
+
+            var imageWidth = $image.width();
+            var containerWidth = $container.width();
+
+            var imgL = 0;
+            var imgC = ((imageWidth - containerWidth) / 2) * -1;
+            var imgR = (imageWidth - containerWidth) * -1;
+
+            $('.container img').css('left', imgC);
+
+            $handle
+              .on('mouseenter', function(element) {
+                var element = $(this).parent().prev('img');
+
+                if ($(this).hasClass('left')) {
+                  element.css('left', imgL);
+                } else if ($(this).hasClass('center')) {
+                  element.css('left', imgC);
+                } else if ($(this).hasClass('right')) {
+                  element.css('left', imgR);
+                }
+              })
+              .on('mouseleave', function(element) {
+                var element = $(this).parent().prev('img');
+                element.css('left', imgC);
+              });
+          }
+          slideHotel();
+        </script>
+      </body>
 </html>

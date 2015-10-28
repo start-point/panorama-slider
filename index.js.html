@@ -8,49 +8,77 @@
         <style type="text/css">
             body {
                 padding: 10px;
-                font-family: sans-serif;
+                -webkit-background-size: 100%;
+            }
+            h3,
+            p {
+              margin: 0;
+              padding: 10px;
+              color: rgb(9, 42, 94);
+              font-family: 'Tui Type Light', Calibri, 'Droid Sans', Arial, sans-serif;
+              font-size: 16px;
+              line-height: 20px;
             }
             .hotel {
+              box-sizing: border-box;
                 position: relative;
-                outline: 1px solid #F1F1F1;
-                display: table;
-                width: 600px;
-                box-sizing: border-box;
-                cursor: all-scroll;
+                outline: 1px solid #F5F5F5;
+                display: inline-block;
+                width: 320px;
+                -webkit-user-select: none;  /* Chrome all / Safari all */
+               -moz-user-select: none;     /* Firefox all */
+               -ms-user-select: none;      /* IE 10+ */
+               user-select: none;
+            }
+            .hotel .window {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
             }
             .hotel .thumbnail {
                 position: relative;
                 display: inline-block;
-                width: 310px;
-                height: 310px;
+                width: 320px;
+                height: 320px;
                 overflow: hidden;
+                cursor: col-resize;
+                margin: 0;
+                padding: 0;
+               line-height:0;
+               vertical-align: top;
             }
             .hotel .thumbnail img {
                 position: absolute;
                 height: 100%;
-            }
 
+            }
             .hotel .thumbnail img.transition {
                 transition: left .2s ease-in-out 0s;
             }
-
             .hotel .details {
                 display: table-cell;
                 vertical-align: top;
                 width: 100%;
                 padding: 10px;
             }
+            .gradient.module-blue {
+              margin: 0;
+              background-image: linear-gradient(to right bottom, rgb(112, 203, 244), rgb(183, 229, 249));
+            }
         </style>
     </head>
     <body>
-      <img src="http://pics.tui.com/pics/picsPanos/3/34898_A.jpg" alt="Hotel">
         <article class="hotel">
             <picture class="thumbnail">
                 <img class="transition" src="http://pics.tui.com/pics/picsPanos/3/34898_A.jpg" alt="Hotel" width="930" height="310">
+                <div class="window"></div>
             </picture>
-            <p class="details">
-                Hotelname
-            </p>
+            <div class="gradient module-blue">
+              <h3>Gradient 1</h3>
+	            <p>For use on white background</p>
+          </div>
         </article>
     </body>
 
